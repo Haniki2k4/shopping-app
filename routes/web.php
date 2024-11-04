@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\News\Cate;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,3 +20,5 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/category',Cate::class)->middleware('auth')->name('category');
