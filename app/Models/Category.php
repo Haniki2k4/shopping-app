@@ -13,8 +13,8 @@ class Category extends Model
     protected $fillable = [
         'title',
         'description',
-        'seokeyword',
-        'seodescription',
+        'created_by',
+        'modified_by',
     ];
 
     // Định nghĩa mối quan hệ với bảng Post
