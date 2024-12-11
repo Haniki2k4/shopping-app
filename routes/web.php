@@ -6,16 +6,13 @@ use App\Livewire\News\Category\CreateCate;
 use App\Livewire\News\Post\ListOfPosts;
 use App\Livewire\News\Post\CreatePost;
 
-use App\Http\Controllers\CkeditorController;
+use App\Http\Controllers\HomeController;
 use App\Livewire\Counter;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('clients.home', ['name' => 'Nguyen Van A']);
-})->name('home ');
 
 Route::middleware([
     'auth:sanctum',
@@ -34,5 +31,5 @@ Route::get('/category/edit-cate', CreateCate::class)->middleware('auth')->name('
 Route::get('/posts', ListOfPosts::class)->middleware('auth')->name('posts');
 Route::get('/posts/create-post', CreatePost::class)->middleware('auth')->name('create-post');
 
-Route::post('ckeditor/upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
-Route::get('/counter', Counter::class);
+
+Route::get('/home', [HomeController::class, 'index']);

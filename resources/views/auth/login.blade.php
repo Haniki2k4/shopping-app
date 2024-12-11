@@ -1,51 +1,87 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html>
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dark Bootstrap Admin </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="{{url('clients/html-magazine-template/css/login/bootstrap.min.css')}}">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="{{url('clients/html-magazine-template/css/style.blue.css')}}" id="theme-stylesheet">
+</head>
 
+<body>
+    <div class="login-page">
         @session('status')
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ $value }}
             </div>
         @endsession
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+        <div class="container d-flex align-items-center">
+            <div class="form-holder has-shadow">
+                <div class="row">
+                    <!-- Logo & Information Panel-->
+                    <div class="col-lg-6">
+                        <div class="info d-flex align-items-center">
+                            <div class="content">
+                                <div class="logo">
+                                    <h1>Active</h1>
+                                </div>
+                                <p style="letter-spacing: 23px;">NEWS</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Panel    -->
+                    <div class="col-lg-6 bg-sky-300">
+                        <div class="form d-flex align-items-center">
+                            <div class="content">
+                                <form class="form-validate" method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input id="login-username" type="email" name="email" required autofocus
+                                            autocomplete="username" class="input-material">
+                                        <label for="login-username" class="label-material">Tên người dùng</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input id="login-password" type="password" name="password" required
+                                            autocomplete="current-password" class="input-material">
+                                        <label for="login-password" class="label-material">Mật khẩu</label>
+                                    </div>
+                                    <x-button class="btn btn-primary" id="login">
+                                        {{ __('Đăng nhập') }}
+                                    </x-button>
+                                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                                </form>
+                                <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a><br>
+                                <small>Chưa có tài khoản?</small><a href="{{ route('register') }}" class="signup">Tạo
+                                    tài khoản</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="copyrights text-center">
+            <p style="color: black">2024 &copy; DataScience HUPH Team</p>
+        </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="{{url('clients/html-magazine-template/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('clients/html-magazine-template/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{url('clients/html-magazine-template/vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
+    <script src="{{url('clients/html-magazine-template/vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{url('clients/html-magazine-template/vendor/popper.js/umd/popper.min.js')}}"> </script>
+    <script src="{{url('clients/html-magazine-template/vendor/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{url('clients/html-magazine-template/js/front.js')}}"></script>
+</body>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                    <a class="ms-4" href="{{ route('register') }}">
-                        {{ __('Register') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+</html>

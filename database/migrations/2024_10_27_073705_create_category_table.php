@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('title', 150); // Tiêu đề, giới hạn 150 ký tự
             $table->string('description', 250); // Mô tả, giới hạn 250 ký tự
