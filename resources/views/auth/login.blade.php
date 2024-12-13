@@ -49,7 +49,7 @@
                                     <div class="form-group">
                                         <input id="login-username" type="email" name="email" required autofocus
                                             autocomplete="username" class="input-material">
-                                        <label for="login-username" class="label-material">Tên người dùng</label>
+                                        <label for="login-username" class="label-material">Email</label>
                                     </div>
                                     <div class="form-group">
                                         <input id="login-password" type="password" name="password" required
@@ -59,10 +59,9 @@
                                     <x-button class="btn btn-primary" id="login">
                                         {{ __('Đăng nhập') }}
                                     </x-button>
-                                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                                 </form>
                                 <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a><br>
-                                <small>Chưa có tài khoản?</small><a href="{{ route('register') }}" class="signup">Tạo
+                                <small>Chưa có tài khoản?</small><a href="{{ route('register') }}" class="signup"> Tạo
                                     tài khoản</a>
                             </div>
                         </div>
