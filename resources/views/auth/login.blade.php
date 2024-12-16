@@ -56,7 +56,7 @@
                                             autocomplete="current-password" class="input-material">
                                         <label for="login-password" class="label-material">Mật khẩu</label>
                                     </div>
-                                    <x-button class="btn btn-primary" id="login">
+                                    <x-button class="btn btn-primary" id="logian">
                                         {{ __('Đăng nhập') }}
                                     </x-button>
                                 </form>

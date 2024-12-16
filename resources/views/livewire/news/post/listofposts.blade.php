@@ -32,31 +32,38 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th style="width: 10px">STT</th>
-                                <th>Tiêu đề</th>
-                                <th>Chú thích</th>
-                                <th style="width: 100px">Người tạo</th>
-                                <th style="width: 140px">Ngày cập nhật</th>
-                                <th style="width: 100px">Trạng thái</th>
-                                <th style="width: 120px"> # </th>
+                                <th style="width: 5%">STT</th>
+                                <th>Hình ảnh</th>
+                                <th style="width: 10%">Tiêu đề</th>
+                                <th style="width: 20%">Danh mục</th>
+                                <th style="width: 20%">Chú thích</th>
+                                <th style="width: 10%">Người tạo</th>
+                                <th style="width: 15%">Ngày cập nhật</th>
+                                <th style="width: 20%">Trạng thái</th>
+                                <th style="width: 10%"> # </th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($posts as $index => $item)
                                 <tr class="align-middle">
                                     <td>{{$index + 1 }}</td>
+                                    <td color="red">N/A</td>
                                     <td>{{$item['title']}}</td>
+                                    <td>{{ $item->category ? $item->category->title : 'N/A' }}</td>
                                     <td>{{$item['description']}}</td>
                                     <td><span class="badge text-bg-success">{{$item['created_by']}}</span></td>
                                     <td><span>{{ $item['updated_at']->format('m/d/Y') }}</span></td>
                                     <td>
-                                        <!-- Hiển thị trạng thái và nút chỉnh sửa -->
-                                        <button wire:click="toggleStatus({{ $item->id }})" class="btn btn-sm btn-link">
-                                            <span
-                                                class="badge {{ $item->status === 'Active' ? 'text-bg-primary' : 'text-bg-secondary' }}">
-                                                {{ $item->status === 'Active' ? 'Active' : 'InActive' }}
-                                            </span>
-                                        </button>
+                                        <!-- Dropdown chuyển đổi trạng thái -->
+                                        <select wire:change="updateStatus({{ $item->id }}, $event.target.value)"
+                                            class="form-select form-select-sm">
+                                            <option value="Draft" {{ $item->post_status === 'Draft' ? 'selected' : '' }}>Nháp
+                                            </option>
+                                            <option value="Published" {{ $item->post_status === 'Published' ? 'selected' : '' }}>
+                                                Công khai</option>
+                                            <option value="Archived" {{ $item->post_status === 'Archived' ? 'selected' : '' }}>Lưu
+                                                trữ</option>
+                                        </select>
                                     </td>
                                     <td>
                                         <button class="badge text-bg-warning" style="font-size:14px"><i class="far fa-edit"

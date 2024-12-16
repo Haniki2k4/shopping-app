@@ -22,7 +22,7 @@
                             <form>
                                 <div class="form-group">
                                     <label for="title">Tiêu đề</label>
-                                    <input type="text" id="title" class="form-control" wire:model="title">
+                                    <input type="text" class="form-control" wire:model="title"></input>
                                     @error('title') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -38,7 +38,7 @@
                                     @error('categoryID') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="position">Position</label>
+                                    <label for="position">Vị trí</label>
                                     <select id="position" wire:model="position" class="form-control">
                                         <option value="" selected>-- Chọn vị trí --</option>
                                         <option value="1">First Page</option>
@@ -46,19 +46,16 @@
                                     </select>
                                     @error('position') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
-
                                 <div class="form-group">
                                     <label for="description">Mô tả</label>
-                                    <textarea id="description" class="form-control" wire:model="description"></textarea>
+                                    <input id="description" class="form-control" wire:model="description"></input>
                                     @error('description') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" wire:ignore>
                                     <label for="detail">Chi tiết</label>
-                                    <textarea id="editor1" class="form-control" wire:model="detail"
-                                        name="detail"></textarea>
-                                    @error('detail') <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                    <textarea id="editor" class="form-control" wire:model.defer="detail"></textarea>
+                                    @error('detail') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="post_status">Trạng thái</label>
@@ -93,5 +90,35 @@
         </div>
     </div>
 </div>
-</div>
-</div>
+
+@push('scripts')
+    <script type="module">
+        const {
+            ClassicEditor,
+            Essentials,
+            Bold,
+            Italic,
+            Font,
+            Paragraph
+        } = CKEDITOR;
+
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjU3NTY3OTksImp0aSI6IjIzODgxZjA5LThkZDgtNDI4ZS1iNjgwLTkyYTAyNWYwMjJmNCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCIsIkJPWCJdLCJ2YyI6IjYwYzkzNzI3In0.aT0k_8nsdPqBBph8jOGnS31CKlcOMg8SNPiA4btFtHGE5y9E7NpWqiuSvecTTtHqBf0c1RZRYcPV1uds6BPTZA',
+                plugins: [Essentials, Bold, Italic, Font, Paragraph],
+                toolbar: [
+                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
+                ]
+
+            })
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                @this.set('detail', editor.getData());
+                })
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush

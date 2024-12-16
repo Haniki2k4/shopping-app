@@ -63,7 +63,13 @@ class CreatePost extends Component
 
     public function savePost()
     {
+        // dd($this->detail);
         $validatedData = $this->validate();
+
+        if (!$this->detail) {
+            session()->flash('error', 'Vui lòng nhập nội dung chi tiết.');
+            return;
+        }
 
         // Thêm bài đăng
         Post::create(array_merge($validatedData, [
@@ -71,11 +77,11 @@ class CreatePost extends Component
             'modified_by' => auth()->user()->name,
         ]));
 
-        // Reset form
-        $this->reset();
-
+        $this->resetFields();
         // Thông báo thành công
         session()->flash('success', 'Bài đăng đã được tạo thành công.');
+
+        return redirect()->to('/posts');
         
     }
 

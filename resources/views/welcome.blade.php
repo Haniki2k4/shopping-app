@@ -136,9 +136,9 @@
                                                     <a href="{{ url('/profile.show') }}" class="dropdown-item">Trang cá nhân</a>
                                                 @endif
                                                 <hr />
-                                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                                <a href="{{ route('logout') }}" class="dropdown-item"
                                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                    Sign out
+                                                    Đăng xuất
                                                 </a>
                                             @else
                                                 <a href="{{ route('login') }}" class="dropdown-item">Đăng nhập</a>

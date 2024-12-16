@@ -11,11 +11,11 @@ class ListOfPosts extends Component
     use WithPagination;
     public function render()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::with('category')->paginate(10);
         // dd($this->categories);
         return view('livewire.news.post.listofposts', ['posts' => $posts])->layout('layouts.app');
     }
-    public function toggleStatus($postId)
+    public function updateStatus($postId, $newStatus)
     {
         $post = Post::find($postId);
 
@@ -28,7 +28,10 @@ class ListOfPosts extends Component
         }
 
         // Chuyển đổi trạng thái từ 'active' sang 'inactive' hoặc ngược lại
-        $post->status = ($post->post_status === 'published') ? 'archived' : 'published';
+        if ($post) {
+            $post->post_status = $newStatus;
+            $post->save();
+        }
 
         // Lưu thay đổi
         $post->save();

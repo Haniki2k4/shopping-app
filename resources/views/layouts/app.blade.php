@@ -28,7 +28,7 @@
         integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous"><!-- jsvectormap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
         integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.css" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -231,16 +231,6 @@
                                             <i class="nav-arrow bi bi-chevron-right"></i>
                                         </p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item"> <a href="./examples/login.html" class="nav-link"> <i
-                                                    class="nav-icon bi bi-circle"></i>
-                                                <p>Login</p>
-                                            </a> </li>
-                                        <li class="nav-item"> <a href="./examples/register.html" class="nav-link"> <i
-                                                    class="nav-icon bi bi-circle"></i>
-                                                <p>Register</p>
-                                            </a> </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-item"> <a href="#" class="nav-link"> <i
                                             class="nav-icon bi bi-box-arrow-in-right"></i>
@@ -249,16 +239,6 @@
                                             <i class="nav-arrow bi bi-chevron-right"></i>
                                         </p>
                                     </a>
-                                    <ul class="nav nav-treeview">
-                                        <li class="nav-item"> <a href="./examples/login-v2.html" class="nav-link"> <i
-                                                    class="nav-icon bi bi-circle"></i>
-                                                <p>Login</p>
-                                            </a> </li>
-                                        <li class="nav-item"> <a href="./examples/register-v2.html" class="nav-link"> <i
-                                                    class="nav-icon bi bi-circle"></i>
-                                                <p>Register</p>
-                                            </a> </li>
-                                    </ul>
                                 </li>
                                 <li class="nav-item"> <a href="./examples/lockscreen.html" class="nav-link"> <i
                                             class="nav-icon bi bi-circle"></i>
@@ -277,9 +257,7 @@
     </div>
 
     @stack('modals')
-    @yield('scripts')
     @livewireScripts
-</body>
 
 <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js"
     integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script>
@@ -292,9 +270,10 @@
 <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
 <script src="{{asset('admin/dist/js/adminlte.js')}}"></script>
 
-<script src="{{url('public/ckeditor5-builder-43.3.1/ckeditor5/ckeditor5.js')}}"></script>
-<script>
-    CKEDITOR.replace('editor1');
-</script>
+<script src="https://cdn.ckeditor.com/ckeditor5/44.0.0/ckeditor5.umd.js"></script>
+<!-- <script src="{{url('ckeditor/ckeditor.js')}}"></script> -->
 
+@stack('scripts')
+
+</body>
 </html>
