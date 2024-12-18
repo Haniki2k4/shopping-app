@@ -21,13 +21,13 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="title">Tiêu đề</label>
+                                    <label for="title">Tiêu đề<span style="color:red">*</span></label>
                                     <input type="text" class="form-control" wire:model="title"></input>
                                     @error('title') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="categoryID">Chuyên mục</label>
+                                    <label for="categoryID">Chuyên mục<span style="color:red">*</span></label>
                                     <select id="categoryID" wire:model="categoryID"
                                         class="form-control @error('categoryID') is-invalid @enderror">
                                         <option value="">-- Chọn chuyên mục --</option>
@@ -38,7 +38,7 @@
                                     @error('categoryID') <span class="invalid-feedback">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="position">Vị trí</label>
+                                    <label for="position">Vị trí<span style="color:red">*</span></label>
                                     <select id="position" wire:model="position" class="form-control">
                                         <option value="" selected>-- Chọn vị trí --</option>
                                         <option value="1">First Page</option>
@@ -47,18 +47,18 @@
                                     @error('position') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">Mô tả</label>
+                                    <label for="description">Mô tả<span style="color:red">*</span></label>
                                     <input id="description" class="form-control" wire:model="description"></input>
                                     @error('description') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group" wire:ignore>
-                                    <label for="detail">Chi tiết</label>
+                                    <label for="detail">Chi tiết<span style="color:red">*</span></label>
                                     <textarea id="editor" class="form-control" wire:model.defer="detail"></textarea>
                                     @error('detail') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="post_status">Trạng thái</label>
+                                    <label for="post_status">Trạng thái<span style="color:red">*</span></label>
                                     <select id="post_status" class="form-control" wire:model="post_status">
                                         <option value="" selected>-- Chọn trạng thái --</option>
                                         <option value="draft">Nháp</option>
@@ -70,19 +70,19 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="card-footer" style="display:flex">
-                        <div class="col-sm-6">
-                            <a href="{{ route('posts') }}" class="btn btn-secondary"><i class="fas fa-backward"></i>
-                                Quay Lại</a>
-                        </div>
-                        <div class="col-sm-6">
-                            <form wire:submit.prevent="savePost" class="w-full" enctype="multipart/form-data"
-                                method="POST">
-                                <button type="submit" class="btn btn-warning" style="float: right">
-                                    <i class="fas fa-save"></i> Lưu Bài đăng
-                                </button>
-                            </form>
+                        <div class="card-footer" style="display:flex">
+                            <div class="col-sm-6">
+                                <a href="{{ route('posts') }}" class="btn btn-secondary"><i class="fas fa-backward"></i>
+                                    Quay Lại</a>
+                            </div>
+                            <div class="col-sm-6">
+                                <form wire:submit.prevent="savePost" class="w-full" enctype="multipart/form-data"
+                                    method="POST">
+                                    <button type="submit" class="btn btn-warning" style="float: right">
+                                        <i class="fas fa-save"></i> Lưu
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
             })
             .then(editor => {
                 editor.model.document.on('change:data', () => {
-                @this.set('detail', editor.getData());
+                    @this.set('detail', editor.getData());
                 })
             })
             .catch(error => {

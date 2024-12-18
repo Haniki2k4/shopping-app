@@ -77,9 +77,12 @@ class CreatePost extends Component
             'modified_by' => auth()->user()->name,
         ]));
 
-        $this->resetFields();
+        $this->reset();
         // Thông báo thành công
-        session()->flash('success', 'Bài đăng đã được tạo thành công.');
+        toastr()
+        ->timeOut(1500)
+        ->closeButton()
+        ->success('Cập nhật thành công.');
 
         return redirect()->to('/posts');
         

@@ -50,16 +50,16 @@ class ListOfPosts extends Component
     }
 
     //phương thức chỉnh sửa chuyển mục
-    public function editPost($cateid)
+    public function editPost($postID)
     {
         // dd($cateid);
-        return redirect()->to('/posts/edit-post?id=' . $cateid);
+        return redirect()->to('/posts/edit-post?id=' . $postID);
     }
 
     //phương thức xóa chuyển mục
-    public function delPost($cateid)
+    public function delPost($postID)
     {
-        Post::find($cateid)->delete();
+        Post::find($postID)->delete();
         toastr()
             ->timeOut(1500)
             ->closeButton()

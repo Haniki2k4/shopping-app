@@ -180,40 +180,20 @@
                         <li class="nav-item"> <a href="{{url('/category')}}"
                                 class="nav-link {{ Request::is('category') ? 'active' : '' }}"> <i
                                     class="nav-icon bi bi-palette"></i>
-                                <p>Category</p>
+                                <p>Quản lý danh mục</p>
                             </a>
                         </li>
                         <li class="nav-item"> <a href="{{url('/posts')}}"
                                 class="nav-link {{ Request::is('posts') ? 'active' : '' }}"> <i
                                     class="nav-icon bi bi-pencil-square"></i>
-                                <p>Posts</p>
+                                <p>Quản lý bài viết</p>
                             </a>
                         </li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-pencil-square"></i>
-                                <p>
-                                    Forms
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
+                        <li class="nav-item"> <a href="{{url('/users')}}"
+                                class="nav-link {{ Request::is('users') ? 'active' : '' }}"> <i 
+                                    class="nav-icon bi bi-person-gear"></i>
+                                <p>Quản lý tài khoản</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="./forms/general.html" class="nav-link"> <i
-                                            class="nav-icon bi bi-circle"></i>
-                                        <p>General Elements</p>
-                                    </a> </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-table"></i>
-                                <p>
-                                    Tables
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="./tables/simple.html" class="nav-link"> <i
-                                            class="nav-icon bi bi-circle"></i>
-                                        <p>Simple Tables</p>
-                                    </a> </li>
-                            </ul>
                         </li>
                         <li class="nav-header">EXAMPLES</li>
                         <li class="nav-item"> <a href="#" class="nav-link"> <i
