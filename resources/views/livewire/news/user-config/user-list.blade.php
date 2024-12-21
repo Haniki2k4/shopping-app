@@ -41,9 +41,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($users as $index => $item)
+                            <!-- chạy vòng lặp để hiện từng giá trị trong biến $users -->
+                            @forelse($users as $index => $item) 
                                 <tr class="align-middle">
-                                    <td>{{$index + 1 }}</td>
+                                    <!-- Để index thay cho id của các giá trị (index+1 để có thể bắt đầu từ 1)-->
+                                    <td>{{$index + 1 }}</td> 
                                     <td>{{$item['name']}}</td>
                                     <td>{{$item['email']}}</td>
                                     <td>
@@ -54,6 +56,9 @@
                                         @endif
                                     </td>
                                     <td>
+                                    <!-- wire:change -> lắng nghe sự kiện change trên phần tử <select>. -->
+                                    <!-- lấy id của đối tượng ($item) và gọi phương thức updateStatus() -->
+                                    <!-- $event.target.value: Tham chiếu đến giá trị được chọn trong dropdown. -->
                                         <select wire:change="updateStatus({{ $item->id }}, $event.target.value)"
                                             class="form-select form-select-sm">
                                             <option value="active" {{ $item->user_status === 'active' ? 'selected' : '' }}>
@@ -65,8 +70,11 @@
                                         </select>
                                     </td>
                                     <td>
+                                        <!-- wire:click -> lắng nghe sự kiện click trên phần tử <button>-->
+                                            <!-- Gọi đến phương thức editUser() với id được lấy từ đối tượng hiện tại  -->
                                         <button class="badge text-bg-warning" style="font-size:14px"><i class="far fa-edit"
                                                 wire:click="editUser({{ $item->id }})"></i></button>
+                                            <!-- Gọi đến phương thức delUser() với id được lấy từ đối tượng hiện tại  -->
                                         <button class="badge text-bg-danger" style="font-size:14px"><i class="fas fa-ban"
                                                 wire:click="delUser({{ $item->id }})"></i></button>
                                     </td>

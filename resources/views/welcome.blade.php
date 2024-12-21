@@ -57,7 +57,7 @@
                             <i class="fas fa-bolt text-white"></i>
                         </span>
                         <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
-                            <p class="mb-0 text-white fs-6 fw-normal">Trending</p>
+                            <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
                         </div>
                         <div class="overflow-hidden" style="width: 735px;">
                             <div id="note" class="ps-2">
@@ -65,21 +65,10 @@
                                     class="img-fluid rounded-circle border border-3 border-primary me-2"
                                     style="width: 30px; height: 30px;" alt="">
                                 <a href="#">
-                                    <p class="text-white mb-0 link-hover">Trần Đức Hải - Trần Thị Lan - Kim Mạnh Hưng
+                                    <p class="text-white mb-0 link-hover">Trần Đức Hải - Trần Thị Lan 
                                     </p>
                                 </a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="top-link flex-lg-wrap">
-                        <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2">
-                            <span id="current-time" class="text-body"></span>
-                        </i>
-                        <div class="d-flex icon">
-                            <p class="mb-0 text-white me-2">Follow Us:</p>
-                            <a href="" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
-                            <a href="" class="me-2"><i class="fab fa-linkedin-in text-body link-hover"></i></a>
-                            <a href="" class="me-2"><i class="fab fa-skype text-body link-hover"></i></a>
                         </div>
                     </div>
                 </div>
@@ -361,16 +350,18 @@
                 </div>
             </div>
             <div class="row g-5">
-                    <div class="footer-item-1">
-                        <h4 class="mb-4 text-white">Get In Touch</h4>
-                        <div class="row d-flex line-h">
-                            <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
-                                    York</span>
-                            </p>
-                            <p class="col-sm  text-secondary line-h">Email: <span class="text-white">Example@gmail.com</span>
-                            </p>
-                            <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span></p>
-                        </div>
+                <div class="footer-item-1">
+                    <h4 class="mb-4 text-white">Get In Touch</h4>
+                    <div class="row d-flex line-h">
+                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
+                                York</span>
+                        </p>
+                        <p class="col-sm  text-secondary line-h">Email: <span
+                                class="text-white">Example@gmail.com</span>
+                        </p>
+                        <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -407,7 +398,6 @@
     <!-- Template Javascript -->
     <script src="{{url('clients/html-magazine-template/js/main.js')}}"></script>
     <script>
-        // Lấy thời gian hiện tại của người dùng
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
         document.getElementById('current-time').textContent = now.toLocaleDateString('vi-VN', options);

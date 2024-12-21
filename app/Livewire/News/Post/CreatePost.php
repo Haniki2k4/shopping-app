@@ -18,7 +18,7 @@ class CreatePost extends Component
     {
         $pathInfo = $request->getPathInfo();
 
-        // Kiểm tra xem path có chứa 'add' hay không
+        // Kiểm tra xem path có chứa 'create' hay không
         $this->containsCreate = str_contains($pathInfo, 'create');
 
         $this->categories = Category::select('id', 'title')->get();
@@ -28,12 +28,14 @@ class CreatePost extends Component
             if ($queryParams['id'] > 0) {
                 $this->id = $queryParams['id'];
                 $this->PostData = Post::findOrFail($this->id);
+                // dd($this->PostData);
                 $this->title = $this->PostData->title;
                 $this->categoryID = $this->PostData->category_id;
                 $this->description = $this->PostData->description;
                 $this->detail = $this->PostData->detail;
                 $this->seokeyword = $this->PostData->seokeyword;
                 $this->seodescription = $this->PostData->seodescription;
+                $this->position = $this->PostData->position;
                 $this->post_status = $this->PostData->post_status;
                 $this->created_by = $this->PostData->created_by;
                 $this->created_at = $this->PostData->created_at;
@@ -50,42 +52,73 @@ class CreatePost extends Component
     }
 
     // Quy tắc validate dữ liệu
-    protected $rules = [
-        'title' => 'required|string|max:150',
-        'categoryID' => 'required|exists:categories,id',
-        'description' => 'required|string|max:250',
-        'detail' => 'required',
-        'position' => 'required|integer',
-        'seokeyword' => 'nullable|string|max:150',
-        'seodescription' => 'nullable|string|max:250',
-        'post_status' => 'required|in:draft,published,archived',
-    ];
+    public function validateFields()
+    {
+        $this->validate([
+            'title' => 'required|string|max:150',
+            'categoryID' => 'required|exists:categories,id',
+            'description' => 'required|string|max:250',
+            'detail' => 'required',
+            'position' => 'required|integer',
+            'seokeyword' => 'nullable|string|max:150',
+            'seodescription' => 'nullable|string|max:250',
+            'post_status' => 'required|in:draft,published,archived',
+        ]);
+    }
 
     public function savePost()
     {
         // dd($this->detail);
-        $validatedData = $this->validate();
+        $this->validateFields();
 
         if (!$this->detail) {
-            session()->flash('error', 'Vui lòng nhập nội dung chi tiết.');
+            toastr()
+                ->timeOut(1500)
+                ->closeButton()
+                ->warning('Vui lòng nhập nội dung chi tiết.');
             return;
         }
+        if ($this->id) {
+            $dataNew = [
+                'title' => $this->title,
+                'categoryID' => $this->categoryID,
+                'description' => $this->description,
+                'detail' => $this->detail,
+                'seokeyword' => $this->seokeyword,
+                'seodescription' => $this->seodescription,
+                'position' => $this->position,
+                'post_status' => $this->post_status,
+                'modified_by' => Auth::user()->name,
+                'updated_at' => now(),
+            ];
+        } else {
+            $dataNew = [
+                'title' => $this->title,
+                'categoryID' => $this->categoryID,
+                'description' => $this->description,
+                'detail' => $this->detail,
+                'seokeyword' => $this->seokeyword,
+                'seodescription' => $this->seodescription,
+                'position' => $this->position,
+                'post_status' => $this->post_status,
+                'created_by' => Auth::user()->name,
+                'modified_by' => Auth::user()->name,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+        }
 
-        // Thêm bài đăng
-        Post::create(array_merge($validatedData, [
-            'created_by' => auth()->user()->name,
-            'modified_by' => auth()->user()->name,
-        ]));
-
-        $this->reset();
+        $var = Post::updateOrCreate(['id' => $this->id], $dataNew);
         // Thông báo thành công
         toastr()
-        ->timeOut(1500)
-        ->closeButton()
-        ->success('Cập nhật thành công.');
+            ->timeOut(1500)
+            ->closeButton()
+            ->success('Cập nhật thành công.');
+        $this->reset();
+
 
         return redirect()->to('/posts');
-        
+
     }
 
 

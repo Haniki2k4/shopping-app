@@ -10,19 +10,24 @@ use Illuminate\Support\Facades\Crypt;
 
 class CreateUser extends Component
 {
+    // Khai báo các thuộc tính sẽ được sử dụng trong component
     public $id, $name, $email , $email_verified_at, $password, $role, $user_status, $UserData, $namefunction;
     public function mount(Request $request)
     {
+        // Lấy thông tin đường dẫn hiện tại từ request
         $pathInfo = $request->getPathInfo();
 
-        // Kiểm tra xem path có chứa 'add' hay không
+        // Kiểm tra xem path có chứa 'create' hay không
         $this->containsCreate = str_contains($pathInfo, 'create');
 
         if (!$this->containsCreate) {
-            $queryParams = $request->query('id');
+            // Nếu không phải trang "create", thực hiện logic để chỉnh sửa
+            $queryParams = $request->query('id'); // Lấy giá trị 'id' từ query string
             if ($queryParams) {
-                $this->id = Crypt::decryptString($queryParams);
-                $this->UserData = User::findOrFail($this->id);
+                $this->id = Crypt::decryptString($queryParams); //Giải mã hóa ID
+                $this->UserData = User::findOrFail($this->id); // Lấy dữ liệu người dùng theo id và gán vào UserData
+
+                // Gán giá trị từ UserData vào các thuộc tính của component
                 $this->name = $this->UserData->name;
                 $this->email = $this->UserData->email;
                 $this->password = $this->UserData->password;
@@ -33,23 +38,27 @@ class CreateUser extends Component
             }
             $this->namefunction = "Chỉnh sửa chuyên mục";
         } else {
-            $this->id = 0;
+            // Nếu là trang "create", khởi tạo id là 0 
             $this->namefunction = "Thêm mới chuyên mục";
         }
     }
 
     public function save()
     {
+        // Gọi hàm kiểm tra validateFields và validate các trường đầu vào
         $this->validateFields();
+        // Chuẩn bị dữ liệu để lưu vào database
         if ($this->id) {
+            // Nếu id đã tồn tại, thực hiện cập nhật dữ liệu
             $dataNew = [
                 'name' => $this->name,
-                'password' => Hash::make($this->password),
+                'password' => Hash::make($this->password), //Mã hóa mật khẩu
                 'role' =>  $this->role,  
                 'user_status' => $this->user_status,  
                 'updated_at' => now(),
             ];
         } else {
+            // Nếu id không tồn tại, thực hiện thêm mới dữ liệu
             $dataNew = [
                 'name' => $this->name,
                 'email' => $this->email,
@@ -61,6 +70,7 @@ class CreateUser extends Component
             ];
         }
 
+        // Sử dụng hàm updateOrCreate để tạo hoặc cập nhật bản ghi
         $var = User::updateOrCreate(['id' => $this->id], $dataNew);
         toastr()
         ->timeOut(1500)
@@ -76,10 +86,10 @@ class CreateUser extends Component
     public function validateFields()
     {
         $this->validate([
-            'name' => 'required|string|max:255|min:2',
-            'email' => 'required|string|email|max:250|unique:users',
-            'password' => 'required|string|min:8',
-            'role' => 'required|in:user,author',
+            'name' => 'required|string|max:255|min:2',// Tên là bắt buộc, độ dài 2-255 ký tự
+            'email' => 'required|string|email|max:250|unique:users', // Email phải hợp lệ, duy nhất trong bảng users
+            'password' => 'required|string|min:8', // Mật khẩu bắt buộc, tối thiểu 8 ký tự
+            'role' => 'required|in:user,author', // Vai trò chỉ được là 'user' hoặc 'author'
         ]);
     }
 
