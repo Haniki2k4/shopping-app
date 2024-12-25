@@ -27,10 +27,7 @@ class UserList extends Component
         }
 
         // Chuyển đổi trạng thái từ 'active' sang 'inactive' hoặc ngược lại
-        if ($users) {
-            $users->user_status = $newStatus;
-            $users->save();
-        }
+        $users->user_status = ($users->user_status === 'active') ? 'inactive' : 'active';
 
         // Lưu thay đổi
         $users->save();

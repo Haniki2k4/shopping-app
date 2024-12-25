@@ -20,7 +20,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="col-12">
-                        <h3 class="card-title" style="padding-top:4px; font-style: italic">Danh sách Bài đăng</h3>
+                        <h3 class="card-title" style="padding-top:4px; font-style: italic">Danh sách Bài viết</h3>
                     </div>
                     <div style="float: right">
                         <button wire:click="addPost()" class="btn btn-success"
@@ -57,11 +57,11 @@
                                         <!-- Dropdown chuyển đổi trạng thái -->
                                         <select wire:change="updateStatus({{ $item->id }}, $event.target.value)"
                                             class="form-select form-select-sm">
-                                            <option value="Draft" {{ $item->post_status === 'Draft' ? 'selected' : '' }}>Nháp
+                                            <option value="draft" {{ $item->post_status === 'draft' ? 'selected' : '' }}>Nháp
                                             </option>
-                                            <option value="Published" {{ $item->post_status === 'Published' ? 'selected' : '' }}>
+                                            <option value="published" {{ $item->post_status === 'published' ? 'selected' : '' }}>
                                                 Công khai</option>
-                                            <option value="Archived" {{ $item->post_status === 'Archived' ? 'selected' : '' }}>Lưu
+                                            <option value="archived" {{ $item->post_status === 'archived' ? 'selected' : '' }}>Lưu
                                                 trữ</option>
                                         </select>
                                     </td>
@@ -74,7 +74,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="text-center">Không tìm thấy kết quả nào.</td>
+                                    <td colspan="9" class="text-center">Không tìm thấy kết quả nào.</td>
                                 </tr>
                             @endforelse
                         </tbody>

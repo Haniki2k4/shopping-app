@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Home\Index;
 use App\Livewire\News\Category\Cate;
 use App\Livewire\News\Category\CreateCate;
 use App\Livewire\News\Post\ListOfPosts;
@@ -11,10 +12,7 @@ use App\Livewire\News\UserConfig\CreateUser;
 use App\Http\Controllers\HomeController;
 use App\Livewire\Counter;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',Index::class)->name('index');
 
 Route::middleware([
     'auth:sanctum',

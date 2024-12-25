@@ -14,11 +14,12 @@ class CreateCate extends Component
     {
         $pathInfo = $request->getPathInfo();
 
-        // Kiểm tra xem path có chứa 'add' hay không
+        // Kiểm tra xem path có chứa 'create' hay không
         $this->containsCreate = str_contains($pathInfo, 'create');
-
+        
         if (!$this->containsCreate) {
             $queryParams = $request->query();
+            dd($queryParams);
             if ($queryParams['id'] > 0) {
                 $this->id = $queryParams['id'];
                 $this->CateData = Category::findOrFail($this->id);

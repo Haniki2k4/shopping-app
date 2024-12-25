@@ -50,11 +50,13 @@
                                         <input id="login-username" type="email" name="email" required autofocus
                                             autocomplete="username" class="input-material">
                                         <label for="login-username" class="label-material">Email</label>
+                                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="form-group">
                                         <input id="login-password" type="password" name="password" required
                                             autocomplete="current-password" class="input-material">
                                         <label for="login-password" class="label-material">Mật khẩu</label>
+                                        @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <x-button class="btn btn-primary" id="logian">
                                         {{ __('Đăng nhập') }}

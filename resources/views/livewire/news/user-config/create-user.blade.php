@@ -29,39 +29,29 @@
                                     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email<span style="color:red">*</span></label>
-                                    <input type="text" wire:model="email" class="form-control" id="email"></input>
-                                    @error('email') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-
                                 @if($namefunction === 'Thêm mới chuyên mục')
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Mật khẩu<span
-                                                style="color:red">*</span></label>
-                                        <input type="password" wire:model="password" class="form-control" id="password">
-                                        @error('password') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <label for="email" class="form-label">Email<span style="color:red">*</span></label>
+                                        <input type="text" wire:model="email" class="form-control" id="email"></input>
+                                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                 @endif
 
                                 <div class="mb-3">
-                                    <label for="role" class="form-label">Vai trò<span style="color:red">*</span></label>
-                                    <select wire:model="role" id="role" class="form-select">
-                                        <option value="">Chọn trạng thái</option>
-                                        <option value="user">User</option>
-                                        <option value="author">Author</option>
-                                    </select>
-                                    @error('role') <span class="text-danger">{{ $message }}</span> @enderror
+                                    <label for="password" class="form-label">Mật khẩu<span
+                                            style="color:red">*</span></label>
+                                    <input type="password" wire:model="password" class="form-control" id="password">
+                                    @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="user_status" class="form-label">Trạng thái<span
-                                            style="color:red">*</span></label>
-                                    <select wire:model="user_status" id="user_status" class="form-select">
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
+                                    <label for="role" class="form-label">Vai trò<span style="color:red">*</span></label>
+                                    <select wire:model="role" id="role" class="form-select">
+                                        <option value="">Chọn vai trò</option>
+                                        <option value="user" {{ $role == 'user' ? 'selected' : '' }}>User</option>
+                                        <option value="author" {{ $role == 'author' ? 'selected' : '' }}>Author</option>
                                     </select>
-                                    @error('user_status') <span class="text-danger">{{ $message }}</span> @enderror
+                                    @error('role') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </form>
                         </div>

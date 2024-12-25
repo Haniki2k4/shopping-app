@@ -57,24 +57,23 @@
                             <i class="fas fa-bolt text-white"></i>
                         </span>
                         <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
-                            <p class="mb-0 text-white fs-6 fw-normal">Trending</p>
+                            <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
                         </div>
-                        <div class="overflow-hidden" style="width: 735px;">
+                        <div class="overflow-hidden" style="width: 800px;">
                             <div id="note" class="ps-2">
-                                <img src="{{url('clients/html-magazine-template/img/features-fashion.jpg')}}"
+                                <img src="{{url('admin/dist/assets/img/Logo_ACNews.jpg')}}"
                                     class="img-fluid rounded-circle border border-3 border-primary me-2"
                                     style="width: 30px; height: 30px;" alt="">
                                 <a href="#">
-                                    <p class="text-white mb-0 link-hover">Trần Đức Hải - Trần Thị Lan - Kim Mạnh Hưng
+                                    <p class="text-white mb-0 link-hover">Trần Đức Hải - Trần Thị Lan
                                     </p>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="top-link flex-lg-wrap">
-                        <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2">
-                            <span id="current-time" class="text-body"></span>
-                        </i>
+                        <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"><span
+                                id="current-time"></span></i>
                         <div class="d-flex icon">
                             <p class="mb-0 text-white me-2">Follow Us:</p>
                             <a href="" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
@@ -163,178 +162,9 @@
     <!-- Navbar End -->
 
     <!-- Main Post Section Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row g-4">
-                <div class="col-lg-7 col-xl-8 mt-0">
-                    <div class="position-relative overflow-hidden rounded">
-                        <img src="{{url('clients/html-magazine-template/img/news-1.jpg')}}"
-                            class="img-fluid rounded img-zoomin w-100" alt="">
-                        <div class="d-flex justify-content-center px-4 position-absolute flex-wrap"
-                            style="bottom: 10px; left: 0;">
-                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-clock"></i> 06 minute
-                                read</a>
-                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-eye"></i> 3.5k Views</a>
-                            <a href="#" class="text-white me-3 link-hover"><i class="fa fa-comment-dots"></i> 05
-                                Comment</a>
-                            <a href="#" class="text-white link-hover"><i class="fa fa-arrow-up"></i> 1.5k Share</a>
-                        </div>
-                    </div>
-                    <div class="border-bottom py-3">
-                        <a href="#" class="display-4 text-dark mb-0 link-hover">Lorem Ipsum is simply dummy text of the
-                            printing</a>
-                    </div>
-                    <p class="mt-3 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
-                        printer took a galley standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley...
-                    </p>
-                    <div class="bg-light p-4 rounded">
-                        <div class="news-2">
-                            <h3 class="mb-4">Top Story</h3>
-                        </div>
-                        <div class="row g-4 align-items-center">
-                            <div class="col-md-6">
-                                <div class="rounded overflow-hidden">
-                                    <img src="{{url('clients/html-magazine-template/img/news-2.jpg')}}"
-                                        class="img-fluid rounded img-zoomin w-100" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-column">
-                                    <a href="#" class="h3">Stoneman Clandestine Ukrainian claims successes against
-                                        Russian.</a>
-                                    <p class="mb-0 fs-5"><i class="fa fa-clock"> 06 minute read</i> </p>
-                                    <p class="mb-0 fs-5"><i class="fa fa-eye"> 3.5k Views</i></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 col-xl-4">
-                    <div class="bg-light rounded p-4 pt-0">
-                        <div class="row g-4">
-                            <div class="col-12">
-                                <div class="rounded overflow-hidden">
-                                    <img src="{{url('clients/html-magazine-template/img/news-3.jpg')}}"
-                                        class="img-fluid rounded img-zoomin w-100" alt="">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="d-flex flex-column">
-                                    <a href="#" class="h4 mb-2">Get the best speak market, news.</a>
-                                    <p class="fs-5 mb-0"><i class="fa fa-clock"> 06 minute read</i> </p>
-                                    <p class="fs-5 mb-0"><i class="fa fa-eye"> 3.5k Views</i></p>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-3.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-4.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-5.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-6.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-7.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="row g-4 align-items-center">
-                                    <div class="col-5">
-                                        <div class="overflow-hidden rounded">
-                                            <img src="{{url('clients/html-magazine-template/img/news-7.jpg')}}"
-                                                class="img-zoomin img-fluid rounded w-100" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-7">
-                                        <div class="features-content d-flex flex-column">
-                                            <a href="#" class="h6">Get the best speak market, news.</a>
-                                            <small><i class="fa fa-clock"> 06 minute read</i> </small>
-                                            <small><i class="fa fa-eye"> 3.5k Views</i></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main class="app-main">
+        {{$slot}}
+    </main>
     <!-- Main Post Section End -->
 
 
@@ -361,16 +191,18 @@
                 </div>
             </div>
             <div class="row g-5">
-                    <div class="footer-item-1">
-                        <h4 class="mb-4 text-white">Get In Touch</h4>
-                        <div class="row d-flex line-h">
-                            <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
-                                    York</span>
-                            </p>
-                            <p class="col-sm  text-secondary line-h">Email: <span class="text-white">Example@gmail.com</span>
-                            </p>
-                            <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span></p>
-                        </div>
+                <div class="footer-item-1">
+                    <h4 class="mb-4 text-white">Get In Touch</h4>
+                    <div class="row d-flex line-h">
+                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
+                                York</span>
+                        </p>
+                        <p class="col-sm  text-secondary line-h">Email: <span
+                                class="text-white">Example@gmail.com</span>
+                        </p>
+                        <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -397,6 +229,8 @@
             class="fa fa-arrow-up"></i></a>
 
 
+    @stack('modals')
+    @livewireScripts
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -407,7 +241,6 @@
     <!-- Template Javascript -->
     <script src="{{url('clients/html-magazine-template/js/main.js')}}"></script>
     <script>
-        // Lấy thời gian hiện tại của người dùng
         const now = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
         document.getElementById('current-time').textContent = now.toLocaleDateString('vi-VN', options);

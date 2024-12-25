@@ -28,11 +28,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="categoryID">Chuyên mục<span style="color:red">*</span></label>
-                                    <select id="categoryID" wire:model="categoryID"
-                                        class="form-control @error('categoryID') is-invalid @enderror">
+                                    <select id="categoryID" wire:model="categoryID" class="form-control">
                                         <option value="">-- Chọn chuyên mục --</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            <option value="{{ $category->id }}" {{ $category->id == $categoryID ? 'selected' : '' }}>
+                                                {{ $category->title }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('categoryID') <span class="invalid-feedback">{{ $message }}</span> @enderror
@@ -40,10 +41,11 @@
                                 <div class="form-group">
                                     <label for="position">Vị trí<span style="color:red">*</span></label>
                                     <select id="position" wire:model="position" class="form-control">
-                                        <option value="" selected>-- Chọn vị trí --</option>
-                                        <option value="1">First Page</option>
-                                        <option value="2">Normal</option>
+                                        <option value="">-- Chọn vị trí --</option>
+                                        <option value="1" {{ $position == 1 ? 'selected' : '' }}>First Page</option>
+                                        <option value="2" {{ $position == 2 ? 'selected' : '' }}>Normal</option>
                                     </select>
+
                                     @error('position') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group">
@@ -60,10 +62,13 @@
                                 <div class="form-group">
                                     <label for="post_status">Trạng thái<span style="color:red">*</span></label>
                                     <select id="post_status" class="form-control" wire:model="post_status">
-                                        <option value="" selected>-- Chọn trạng thái --</option>
-                                        <option value="draft">Nháp</option>
-                                        <option value="published">Công khai</option>
-                                        <option value="archived">Lưu trữ</option>
+                                        <option value="">-- Chọn trạng thái --</option>
+                                        <option value="draft" {{ $post_status == 'draft' ? 'selected' : '' }}>Nháp
+                                        </option>
+                                        <option value="published" {{ $post_status == 'published' ? 'selected' : '' }}>Công
+                                            khai</option>
+                                        <option value="archived" {{ $post_status == 'archived' ? 'selected' : '' }}>Lưu
+                                            trữ</option>
                                     </select>
                                     @error('post_status') <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -99,15 +104,24 @@
             Bold,
             Italic,
             Font,
-            Paragraph
+            Paragraph,
+            Alignment,
+            Link,
+            List
         } = CKEDITOR;
 
         ClassicEditor
             .create(document.querySelector('#editor'), {
                 licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjU3NTY3OTksImp0aSI6IjIzODgxZjA5LThkZDgtNDI4ZS1iNjgwLTkyYTAyNWYwMjJmNCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCIsIkJPWCJdLCJ2YyI6IjYwYzkzNzI3In0.aT0k_8nsdPqBBph8jOGnS31CKlcOMg8SNPiA4btFtHGE5y9E7NpWqiuSvecTTtHqBf0c1RZRYcPV1uds6BPTZA',
-                plugins: [Essentials, Bold, Italic, Font, Paragraph],
+                plugins: [Essentials, Bold, Italic, Font, Paragraph,
+                Alignment, Link, List],
                 toolbar: [
-                    'undo', 'redo', '|', 'bold', 'italic', '|',
+                    'undo', 'redo', '|', 
+                    'bold', 'italic', '|',
+                    'alignment', '|',
+                    'link', '|',
+                    'numberedList', 'bulletedList', '|',
+                    'insertTable', '|',
                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor'
                 ]
 
