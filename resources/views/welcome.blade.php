@@ -58,6 +58,7 @@
                         </span>
                         <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
                             <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
+                            <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
                         </div>
                         <div class="overflow-hidden" style="width: 800px;">
                             <div id="note" class="ps-2">
@@ -191,6 +192,18 @@
                 </div>
             </div>
             <div class="row g-5">
+                <div class="footer-item-1">
+                    <h4 class="mb-4 text-white">Get In Touch</h4>
+                    <div class="row d-flex line-h">
+                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
+                                York</span>
+                        </p>
+                        <p class="col-sm  text-secondary line-h">Email: <span
+                                class="text-white">Example@gmail.com</span>
+                        </p>
+                        <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span>
+                        </p>
+                    </div>
                 <div class="footer-item-1">
                     <h4 class="mb-4 text-white">Get In Touch</h4>
                     <div class="row d-flex line-h">

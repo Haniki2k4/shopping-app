@@ -15,15 +15,23 @@ class CreateUser extends Component
     public function mount(Request $request)
     {
         // Lấy thông tin đường dẫn hiện tại từ request
+        // Lấy thông tin đường dẫn hiện tại từ request
         $pathInfo = $request->getPathInfo();
 
+        // Kiểm tra xem path có chứa 'create' hay không
         // Kiểm tra xem path có chứa 'create' hay không
         $this->containsCreate = str_contains($pathInfo, 'create');
 
         if (!$this->containsCreate) {
             // Nếu không phải trang "create", thực hiện logic để chỉnh sửa
             $queryParams = $request->query('id'); // Lấy giá trị 'id' từ query string
+            // Nếu không phải trang "create", thực hiện logic để chỉnh sửa
+            $queryParams = $request->query('id'); // Lấy giá trị 'id' từ query string
             if ($queryParams) {
+                $this->id = Crypt::decryptString($queryParams); //Giải mã hóa ID
+                $this->UserData = User::findOrFail($this->id); // Lấy dữ liệu người dùng theo id và gán vào UserData
+
+                // Gán giá trị từ UserData vào các thuộc tính của component
                 $this->id = Crypt::decryptString($queryParams); //Giải mã hóa ID
                 $this->UserData = User::findOrFail($this->id); // Lấy dữ liệu người dùng theo id và gán vào UserData
 
@@ -39,6 +47,7 @@ class CreateUser extends Component
             $this->namefunction = "Chỉnh sửa chuyên mục";
         } else {
             // Nếu là trang "create", khởi tạo id là 0 
+            // Nếu là trang "create", khởi tạo id là 0 
             $this->namefunction = "Thêm mới chuyên mục";
         }
     }
@@ -46,9 +55,12 @@ class CreateUser extends Component
     public function save()
     {
         // Gọi hàm kiểm tra validateFields và validate các trường đầu vào
+        // Gọi hàm kiểm tra validateFields và validate các trường đầu vào
         $this->validateFields();
         // Chuẩn bị dữ liệu để lưu vào database
+        // Chuẩn bị dữ liệu để lưu vào database
         if ($this->id) {
+            // Nếu id đã tồn tại, thực hiện cập nhật dữ liệu
             // Nếu id đã tồn tại, thực hiện cập nhật dữ liệu
             $dataNew = [
                 'name' => $this->name,
@@ -57,6 +69,7 @@ class CreateUser extends Component
                 'updated_at' => now(),
             ];
         } else {
+            // Nếu id không tồn tại, thực hiện thêm mới dữ liệu
             // Nếu id không tồn tại, thực hiện thêm mới dữ liệu
             $dataNew = [
                 'name' => $this->name,
@@ -69,6 +82,7 @@ class CreateUser extends Component
             ];
         }
 
+        // Sử dụng hàm updateOrCreate để tạo hoặc cập nhật bản ghi
         // Sử dụng hàm updateOrCreate để tạo hoặc cập nhật bản ghi
         $var = User::updateOrCreate(['id' => $this->id], $dataNew);
         toastr()
