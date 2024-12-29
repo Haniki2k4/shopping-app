@@ -47,7 +47,14 @@
                             @forelse($posts as $index => $item)
                                 <tr class="align-middle">
                                     <td>{{$index + 1 }}</td>
-                                    <td style="color: red;">N/A</td>
+                                    @if ($item->image)
+                                        <td>
+                                            <img src="{{ asset('storage/app/public/' . $item->image) }}" alt="{{ $item->title }}"
+                                                class="img-fluid">
+                                            </td>
+                                    @else
+                                        <td style="color: red;">N/A</td>
+                                    @endif
                                     <td>{{$item['title']}}</td>
                                     <td>{{ $item->category ? $item->category->title : 'N/A' }}</td>
                                     <td>{{$item['description']}}</td>

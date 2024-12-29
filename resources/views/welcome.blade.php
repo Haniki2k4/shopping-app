@@ -7,6 +7,7 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
     <title>Active News</title>
+    <link rel="icon" type="image/x-icon" href="{{url('admin/dist/assets/img/Logo_ACNews.jpg')}}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -58,7 +59,6 @@
                         </span>
                         <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
                             <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
-                            <p class="mb-0 text-white fs-6 fw-normal">Teams</p>
                         </div>
                         <div class="overflow-hidden" style="width: 800px;">
                             <div id="note" class="ps-2">
@@ -88,7 +88,7 @@
         <div class="container-fluid bg-light">
             <div class="container px-0">
                 <nav class="navbar navbar-light navbar-expand-xl">
-                    <a href="index.html" class="navbar-brand mt-3">
+                    <a href="{{url('/')}}" class="navbar-brand mt-3">
                         <p class="text-primary display-6 mb-2" style="line-height: 0;">Active</p>
                         <small class="text-body fw-normal" style="letter-spacing: 30px;">NEWS</small>
                     </a>
@@ -98,11 +98,10 @@
                     </button>
                     <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
                         <div class="navbar-nav mx-auto border-top">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="detail-page.html" class="nav-item nav-link">Detail Page</a>
-                            <a href="404.html" class="nav-item nav-link">404 Page</a>
+                            <a href="{{ url('/ ') }}"
+                                class="nav-item nav-link {{ Request::is('index') ? 'active' : '' }}">Trang chủ</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dropdown</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Danh mục</a>
                                 <div class="dropdown-menu m-0 bg-secondary rounded-0">
                                     <a href="#" class="dropdown-item">Dropdown 1</a>
                                     <a href="#" class="dropdown-item">Dropdown 2</a>
@@ -110,6 +109,9 @@
                                     <a href="#" class="dropdown-item">Dropdown 4</a>
                                 </div>
                             </div>
+                            @if (Route::currentRouteName() == 'view-post') {{-- Kiểm tra route name --}}
+                                <span class="nav-item nav-link active">Chi tiết</span>
+                            @endif
                             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
                         </div>
                         <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
@@ -176,14 +178,14 @@
                 <div class="row g-4">
                     <div class="col-lg-3">
                         <a href="#" class="d-flex flex-column flex-wrap">
-                            <p class="text-white mb-0 display-6">Newsers</p>
-                            <small class="text-light" style="letter-spacing: 11px; line-height: 0;">Newspaper</small>
+                            <p class="text-white mb-0 display-6">Active</p>
+                            <small class="text-light" style="letter-spacing: 20px; line-height: 0;">News</small>
                         </a>
                     </div>
                     <div class="col-lg-9">
                         <div class="d-flex position-relative rounded-pill overflow-hidden">
                             <input class="form-control border-0 w-100 py-3 rounded-pill" type="email"
-                                placeholder="example@gmail.com">
+                                placeholder="Đang phát triển">
                             <button type="submit"
                                 class="btn btn-primary border-0 py-3 px-5 rounded-pill text-white position-absolute"
                                 style="top: 0; right: 0;">Subscribe Now</button>
@@ -193,25 +195,14 @@
             </div>
             <div class="row g-5">
                 <div class="footer-item-1">
-                    <h4 class="mb-4 text-white">Get In Touch</h4>
                     <div class="row d-flex line-h">
-                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
-                                York</span>
+                        <h4 class="mb-4 text-white">Get In Touch</h4>
+                        </p>
+                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">1A Đ.Đức Thắng, Bắc
+                                Từ Liêm</span>
                         </p>
                         <p class="col-sm  text-secondary line-h">Email: <span
-                                class="text-white">Example@gmail.com</span>
-                        </p>
-                        <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span>
-                        </p>
-                    </div>
-                <div class="footer-item-1">
-                    <h4 class="mb-4 text-white">Get In Touch</h4>
-                    <div class="row d-flex line-h">
-                        <p class="col-sm  text-secondary line-h">Address: <span class="text-white">123 Streat, New
-                                York</span>
-                        </p>
-                        <p class="col-sm  text-secondary line-h">Email: <span
-                                class="text-white">Example@gmail.com</span>
+                                class="text-white">datascience@gmail.com</span>
                         </p>
                         <p class="col-sm text-secondary line-h">Phone: <span class="text-white">+0123 4567 8910</span>
                         </p>
@@ -228,8 +219,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site
-                            Name</a>, All right reserved.</span>
+                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>HUPH Data
+                            Science</a>, All right reserved.</span>
                 </div>
             </div>
         </div>

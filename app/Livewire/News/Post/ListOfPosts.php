@@ -4,6 +4,7 @@ namespace App\Livewire\News\Post;
 use App\Models\Post;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 
 class ListOfPosts extends Component
@@ -59,10 +60,23 @@ class ListOfPosts extends Component
     //phương thức xóa chuyển mục
     public function delPost($postID)
     {
-        Post::find($postID)->delete();
-        toastr()
-            ->timeOut(1500)
-            ->closeButton()
-            ->warning('Xóa chuyên mục thành công.');
+        $post = Post::find($postID);
+
+        if ($post) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image);
+            }
+            $post->delete();
+
+            toastr()
+                ->timeOut(1500)
+                ->closeButton()
+                ->warning('Xóa bài viết thành công.');
+        } else {
+            toastr()
+                ->timeOut(1500)
+                ->closeButton()
+                ->error('Bài viết không tồn tại.');
+        }
     }
 }

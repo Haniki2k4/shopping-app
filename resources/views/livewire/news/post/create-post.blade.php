@@ -21,8 +21,27 @@
                         <div class="card-body">
                             <form>
                                 <div class="form-group">
+                                    <label for="image">Hình ảnh<span style="color:red">*</span></label>
+                                    <input type="file" class="form-control" wire:model="image"></input>
+                                    {{-- Hiển thị ảnh hiện tại nếu có --}}
+                                    @if ($currentImage)
+                                        <div class="mt-3">
+                                            <img src="{{ asset('storage/' . $currentImage) }}" class="img-thumbnail"
+                                                width="200">
+                                        </div>
+                                    @endif
+                                    {{-- Hiển thị ảnh mới nếu được tải lên --}}
+                                    @if ($image)
+                                        <div class="mt-3">
+                                            <img src="{{ $image->temporaryUrl() }}" class="img-thumbnail" width="200">
+                                        </div>
+                                    @endif
+                                    @error('image') <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="title">Tiêu đề<span style="color:red">*</span></label>
-                                    <input type="text" class="form-control" wire:model="title"></input>
+                                    <input id="title" wire:model="title" class="form-control"></input>
                                     @error('title') <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -114,9 +133,9 @@
             .create(document.querySelector('#editor'), {
                 licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjU3NTY3OTksImp0aSI6IjIzODgxZjA5LThkZDgtNDI4ZS1iNjgwLTkyYTAyNWYwMjJmNCIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCIsIkJPWCJdLCJ2YyI6IjYwYzkzNzI3In0.aT0k_8nsdPqBBph8jOGnS31CKlcOMg8SNPiA4btFtHGE5y9E7NpWqiuSvecTTtHqBf0c1RZRYcPV1uds6BPTZA',
                 plugins: [Essentials, Bold, Italic, Font, Paragraph,
-                Alignment, Link, List],
+                    Alignment, Link, List],
                 toolbar: [
-                    'undo', 'redo', '|', 
+                    'undo', 'redo', '|',
                     'bold', 'italic', '|',
                     'alignment', '|',
                     'link', '|',

@@ -7,11 +7,14 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CreatePost extends Component
 {
-    public $id, $title, $categoryID, $description, $detail, $position, $image, $post_status, $PostData;
-    public $seokeyword, $seodescription, $created_by, $modified_by, $created_at, $updated_at;
+    use WithFileUploads;
+    public $id, $image, $title, $categoryID, $description, $detail, $position, $post_status, $PostData;
+    public $seokeyword, $seodescription, $created_by, $modified_by, $created_at, $updated_at, $currentImage;
     public $categories = [];
 
     public function mount(Request $request)
@@ -29,6 +32,7 @@ class CreatePost extends Component
                 $this->id = $queryParams['id'];
                 $this->PostData = Post::findOrFail($this->id);
                 // dd($this->PostData);
+                $this->currentImage = $this->PostData->image;
                 $this->title = $this->PostData->title;
                 $this->categoryID = $this->PostData->category_id;
                 $this->description = $this->PostData->description;
@@ -55,6 +59,7 @@ class CreatePost extends Component
     public function validateFields()
     {
         $this->validate([
+            'image' => 'nullable|image|max:2048',
             'title' => 'required|string|max:150',
             'categoryID' => 'required|exists:categories,id',
             'description' => 'required|string|max:250',
@@ -78,6 +83,9 @@ class CreatePost extends Component
                 ->warning('Vui lòng nhập nội dung chi tiết.');
             return;
         }
+
+        $imagePath = $this->image ? $this->image->store('posts', 'public') : $this->currentImage;
+
         if ($this->id) {
             $dataNew = [
                 'title' => $this->title,
@@ -91,8 +99,19 @@ class CreatePost extends Component
                 'modified_by' => Auth::user()->name,
                 'updated_at' => now(),
             ];
+            if ($this->image) {
+                $imagePath = $this->image->store('posts', 'public');
+    
+                // Xóa ảnh cũ nếu tồn tại
+                if ($this->currentImage) {
+                    Storage::disk('public')->delete($this->currentImage);
+                }
+    
+                $dataNew['image'] = $imagePath;
+            }
         } else {
             $dataNew = [
+                'image' => $imagePath,
                 'title' => $this->title,
                 'categoryID' => $this->categoryID,
                 'description' => $this->description,
@@ -106,6 +125,9 @@ class CreatePost extends Component
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
+            if ($this->image) {
+                $dataNew['image'] = $this->image->store('posts', 'public');
+            }
         }
 
         $var = Post::updateOrCreate(['id' => $this->id], $dataNew);
