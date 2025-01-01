@@ -45,12 +45,6 @@
                                             <div class="text-bg-primary" style="width: 100%"></div>
                                         </div>
                                     </div> <!-- /.progress-group -->
-                                    <div class="progress-group"> <span class="progress-text">Kim Mạnh Hưng</span> <span
-                                            class="float-end"><b>5%</b></span>
-                                        <div class="progress progress-sm">
-                                            <div class="text-bg-danger" style="width: 5%"></div>
-                                        </div>
-                                    </div> <!-- /.progress-group -->
                                 </div> <!-- /.col -->
                             </div> <!--end::Row-->
                         </div> <!-- ./card-body -->

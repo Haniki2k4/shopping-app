@@ -19,7 +19,7 @@ class CreateCate extends Component
         
         if (!$this->containsCreate) {
             $queryParams = $request->query();
-            dd($queryParams);
+            // dd($queryParams);
             if ($queryParams['id'] > 0) {
                 $this->id = $queryParams['id'];
                 $this->CateData = Category::findOrFail($this->id);
